@@ -18,8 +18,12 @@ def main():
     frame.pack(expand=True)
     root.eval('tk::PlaceWindow . center')
 
-    def report_callback_exception(self, exc, val, tb):
+    def report_callback_exception(self, exc: Exception, val, tb):
         showerror("Error", message=str(exc))
+        if isinstance(exc, ShouldRestartTheGame):
+            nonlocal game
+            game.restart()
+        raise exc
 
     tk.Tk.report_callback_exception = report_callback_exception
     root.mainloop()
