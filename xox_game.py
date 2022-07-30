@@ -5,7 +5,7 @@ from tkinter.messagebox import showinfo
 
 import numpy as np
 
-FIELD_VALUES = ["  ", "o", "x"]
+FIELD_VALUES = ["...", "o", "x"]
 
 
 class XoxTriedToChangeAlreadyOccupiedCellError(Exception):
@@ -75,5 +75,5 @@ class XoxGame:
             for j in range(3):
                 cmd = _click_command(i, j)
                 b = tk.Button(frame, text=FIELD_VALUES[self.field[i][j]], font="20px", command=cmd)
-                b.grid(row=i + row_offset, column=j, padx=5, pady=5, ipadx=5)
+                b.grid(row=i + row_offset, column=j * 2, columnspan=2, padx=5, pady=5, ipadx=5)
                 self.buttons[i * 3 + j] = b
